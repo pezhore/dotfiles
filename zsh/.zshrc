@@ -27,7 +27,7 @@ source ~/.zsh_aliases
 setopt HIST_IGNORE_SPACE
 
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed5519
+ssh-add ~/.ssh/id_ed25519
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
