@@ -1,0 +1,39 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='`dir --color=auto`'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# I have a local Hashicorp Vault... this houses things and makes my life easier
+alias localvault="VAULT_ADDR=https://10.0.0.181 vault $1"
+alias localvaultload="export \$(localvault kv get -format json kv/zshrc | jq -r '.data.data | to_entries|map(\"\(.key | ascii_upcase)=\(.value|tostring)\")|.[]' | xargs -L 1)"
+
+# I'm lazy and don't want to remember to keep typing `sudo`
+alias apt='sudo apt'
+alias apt-get='sudo apt-get'
+
+# Various shortcut aliases
+alias ff=firefox # also ff is nearly 30% faster than 'firefox'
+alias venv='. ./venv/bin/activate'
+alias nnmap='sudo nmap -g53 --randomize-hosts --script-args http.useragent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Geco) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0i" '
+alias clippy='xclip -selection clipboard'
+alias pbcopy='xclip -selection clipboard'
+alias vpn="sudo -E expect /home/$USER/openconnect.exp brian $(localvault kv get -format json kv/general | jq -r '.data.data.openconnect')"
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Quack Quack
+alias ducks='du -cks * | sort -rn | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
+alias quack='du -cks $(ls -A) | sort -rn | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
