@@ -21,6 +21,11 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+export GPG_TTY=$(tty)
+export ANSIBLE_NOCOWS=1
+export VAULT_SKIP_VERIFY=true
+export VAULT_TLS_SKIP_VERIFY=true
+
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh_aliases
 
@@ -33,8 +38,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-export GPG_TTY=$(tty)
-export ANSIBLE_NOCOWS=1
+
 
 # If I'm on my home network, I can point to my homelab's Vault cluster.
 # Otherwise, I can run a local vault on my workstation
@@ -49,8 +53,6 @@ localvaultload          # From .zsh_aliases (loads a ton of environment vars fro
 
 export GOVC_INSECURE=true
 
-export VAULT_SKIP_VERIFY=true
-export VAULT_TLS_SKIP_VERIFY=true
 export VAULT_TOKEN=$VAULT_HTTP_TOKEN
 
 export VSPHERE_USER=$GOVC_USERNAME
