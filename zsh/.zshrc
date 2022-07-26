@@ -31,6 +31,9 @@ source ~/.zsh_aliases
 
 setopt HIST_IGNORE_SPACE
 
+# DO FUN THINGS!
+fortune | pokemonsay
+
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
@@ -48,6 +51,8 @@ else
   export VAULT_ADDR="https://10.0.0.181"
 fi
 
+echo -n "Hashicorp Vault ($VAULT_ADDR) "
+
 vault login -method=userpass username=pez
 localvaultload          # From .zsh_aliases (loads a ton of environment vars from Hashicorp Vault)
 
@@ -64,9 +69,6 @@ export TF_VAR_vsphere_password=$GOVC_PASSWORD
 export TF_VAR_vsphere_server=$GOVC_URL
 
 export GOPATH=$HOME/go
-
-# DO FUN THINGS!
-fortune | pokemonsay
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
