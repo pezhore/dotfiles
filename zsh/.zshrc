@@ -21,13 +21,17 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+source $ZSH/oh-my-zsh.sh
+
+if [ -f "$HOME/.vault-token" ]; then
+    rm "$HOME/.vault-token"
+fi
+
 export GPG_TTY=$(tty)
 export ANSIBLE_NOCOWS=1
 export VAULT_SKIP_VERIFY=true
 export VAULT_TLS_SKIP_VERIFY=true
 
-source $ZSH/oh-my-zsh.sh
-source ~/.zsh_aliases
 
 setopt HIST_IGNORE_SPACE
 
@@ -41,8 +45,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-
-
 # If I'm on my home network, I can point to my homelab's Vault cluster.
 # Otherwise, I can run a local vault on my workstation
 if [ "$LOCAL_VAULT" ]; then
@@ -54,11 +56,13 @@ fi
 echo -n "Hashicorp Vault ($VAULT_ADDR) "
 
 vault login -method=userpass username=pez
+
+source ~/.zsh_aliases
+
 localvaultload          # From .zsh_aliases (loads a ton of environment vars from Hashicorp Vault)
 
-export GOVC_INSECURE=true
 
-export VAULT_TOKEN=$VAULT_HTTP_TOKEN
+export GOVC_INSECURE=true
 
 export VSPHERE_USER=$GOVC_USERNAME
 export VSPHERE_PASSWORD=$GOVC_PASSWORD
@@ -72,14 +76,14 @@ export GOPATH=$HOME/go
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/deck/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$(\"/home/$USER/.local/share/miniconda3/bin/conda\" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/deck/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/deck/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/$USER/.local/share/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/$USER/.local/share/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/deck/miniconda3/bin:$PATH"
+        export PATH="/home/$USER/.local/share/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
