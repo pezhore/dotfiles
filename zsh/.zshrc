@@ -76,4 +76,4 @@ export TF_VAR_vsphere_server=$GOVC_URL
 
 export GOPATH=$HOME/go
 
-source .conda_init
+source ~/.conda_init
