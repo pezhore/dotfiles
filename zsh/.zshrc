@@ -49,8 +49,10 @@ fi
 # Otherwise, I can run a local vault on my workstation
 if [ "$LOCAL_VAULT" ]; then
   export VAULT_ADDR="https://127.0.0.1:8200"
+  export LOCALVAULT="https://127.0.0.1:8200"
 else
   export VAULT_ADDR="https://10.0.0.181"
+  export LOCALVAULT="https://10.0.0.181"
 fi
 
 echo -n "Hashicorp Vault ($VAULT_ADDR) "
@@ -76,14 +78,14 @@ export GOPATH=$HOME/go
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(\"/home/$USER/.local/share/miniconda3/bin/conda\" 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$(\"/home/$USER/miniconda3/bin/conda\" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/$USER/.local/share/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/$USER/.local/share/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/$USER/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/$USER/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/$USER/.local/share/miniconda3/bin:$PATH"
+        export PATH="/home/$USER/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
