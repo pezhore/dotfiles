@@ -57,7 +57,7 @@ fi
 
 echo -n "Hashicorp Vault ($VAULT_ADDR) "
 
-vault login -method=userpass username=pez
+vault login -method=userpass username=pez > /dev/null
 
 source ~/.zsh_aliases
 
