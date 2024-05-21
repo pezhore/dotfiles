@@ -32,7 +32,6 @@ export ANSIBLE_NOCOWS=1
 export VAULT_SKIP_VERIFY=true
 export VAULT_TLS_SKIP_VERIFY=true
 
-
 setopt HIST_IGNORE_SPACE
 
 # DO FUN THINGS!
@@ -51,8 +50,8 @@ if [ "$LOCAL_VAULT" ]; then
   export VAULT_ADDR="https://127.0.0.1:8200"
   export LOCALVAULT="https://127.0.0.1:8200"
 else
-  export VAULT_ADDR="https://10.0.0.181"
-  export LOCALVAULT="https://10.0.0.181"
+  export VAULT_ADDR="https://10.0.0.81"
+  export LOCALVAULT="https://10.0.0.81"
 fi
 
 echo -n "Hashicorp Vault ($VAULT_ADDR) "
@@ -62,7 +61,6 @@ vault login -method=userpass username=pez > /dev/null
 source ~/.zsh_aliases
 
 localvaultload          # From .zsh_aliases (loads a ton of environment vars from Hashicorp Vault)
-
 
 export GOVC_INSECURE=true
 
@@ -77,3 +75,6 @@ export TF_VAR_vsphere_server=$GOVC_URL
 export GOPATH=$HOME/go
 
 source ~/.conda_init
+
+# Added by ProtonUp-Qt on 22-03-2023 10:14:47
+if [ -d "/home/deck/stl/prefix" ]; then export PATH="$PATH:/home/deck/stl/prefix"; fi
