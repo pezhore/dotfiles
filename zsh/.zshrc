@@ -78,3 +78,5 @@ source ~/.conda_init
 
 # Added by ProtonUp-Qt on 22-03-2023 10:14:47
 if [ -d "/home/deck/stl/prefix" ]; then export PATH="$PATH:/home/deck/stl/prefix"; fi
+
+eval $(thefuck --alias)
