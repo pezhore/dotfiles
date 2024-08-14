@@ -47,15 +47,12 @@ distro=$(hostnamectl | grep "Operating System" | cut -f 3 -d ' ')
 
 case $distro in
 "Ubuntu")
-    print "this is ubuntu"
     alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove --purge -y"
     ;;
 "CachyOS")
-    print "this is cachyos"
     alias update="yay -Pw ; sudo pacman -Syu ; yay -Syu"
     ;;
 "SteamOS")
-    print "this is steamos"
     alias update="yay -Pw ; sudo pacman -Syu ; yay -Syu"
     ;;
 esac
