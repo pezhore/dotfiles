@@ -56,3 +56,5 @@ case $distro in
     alias update="yay -Pw ; sudo pacman -Syu ; yay -Syu"
     ;;
 esac
+
+alias kn=kubens

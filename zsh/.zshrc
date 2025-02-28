@@ -55,8 +55,8 @@ if [ "$LOCAL_VAULT" ]; then
   export VAULT_ADDR="https://127.0.0.1:8200"
   export LOCALVAULT="https://127.0.0.1:8200"
 else
-  export VAULT_ADDR="https://10.0.0.81"
-  export LOCALVAULT="https://10.0.0.81"
+  export VAULT_ADDR="https://10.0.0.90"
+  export LOCALVAULT="https://10.0.0.90"
 fi
 
 echo -n "Hashicorp Vault ($VAULT_ADDR) "
@@ -85,3 +85,5 @@ source ~/.conda_init
 if [ -d "/home/deck/stl/prefix" ]; then export PATH="$PATH:/home/deck/stl/prefix"; fi
 
 eval $(thefuck --alias)
+
+eval "$(starship init zsh)"
