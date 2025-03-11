@@ -85,5 +85,5 @@ source ~/.conda_init
 if [ -d "/home/deck/stl/prefix" ]; then export PATH="$PATH:/home/deck/stl/prefix"; fi
 
 eval $(thefuck --alias)
-
+export STARSHIP_CONFIG=~/.starship.toml
 eval "$(starship init zsh)"
